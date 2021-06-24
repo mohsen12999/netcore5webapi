@@ -11,11 +11,11 @@ namespace Catalog.Controllers
     [Route("[controller]")]
     public class ItemsController : ControllerBase
     {
-        private readonly InMemItemsRepositories repository;
+        private readonly IItemsRepositories repository;
 
-        public ItemsController()
+        public ItemsController(IItemsRepositories repository)
         {
-            repository = new InMemItemsRepositories();
+            this.repository = repository;
         }
 
         // GET /items
