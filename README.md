@@ -4,4 +4,6 @@
 
 ## commands
 
-- `dotnet new webapi -n catalog`
+- `dotnet new webapi -n catalog` -> making project
+- `dotnet dev-certs https --trust` -> prevent https error
+- run debugger from left menu or `f5` see project in `localhost:5001/swagger`
