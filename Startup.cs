@@ -12,6 +12,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
+using Catalog.Repositories;
+
 namespace catalog
 {
     public class Startup
@@ -26,6 +28,8 @@ namespace catalog
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // register repository
+            services.AddSingleton<IItemsRepositories, InMemItemsRepositories>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
