@@ -10,5 +10,6 @@ namespace Catalog.Repositories
         Item GetItem(Guid id);
         IEnumerable<Item> GetItems();
         void CreatedItem(Item item);
+        void UpdateItem(Item item);
     }
 }
