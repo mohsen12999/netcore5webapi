@@ -8,4 +8,4 @@
 - `dotnet dev-certs https --trust` -> prevent https error
 - run debugger from left menu or `f5` see project in `localhost:5001/swagger`
 - for prevent open new windows for every debug, remove `serverReadyAction` in `.vscode\launch.json`
-- for build easily add to default task add group to build task for build -> ctrl + shift + b
+- for build easily add to default task add group to build task for build -> <kbd>ctrl</kbd><kbd>shift</kbd><kbd>b</kbd>
