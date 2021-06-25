@@ -17,5 +17,6 @@
 - `dotnet user-secrets init` -> add user secret id to project in `catalog.csproj`
 - `dotnet user-secrets set MongoDbSettings:Password Pass#word1` -> add secret to project
 - `mongodb for vscode` extension show database data
+- health check -> add service and pipeline in `Startup.cs` and check the route
 
 2:21:00
