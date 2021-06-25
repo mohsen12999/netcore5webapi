@@ -46,7 +46,11 @@ namespace catalog
             // register repository
             services.AddSingleton<IItemsRepositories, MongoDbItemsRepository>();
 
-            services.AddControllers();
+            services.AddControllers(options =>
+            {
+                options.SuppressAsyncSuffixInActionNames = false; // prevent controller name change in compile time
+            });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "catalog", Version = "v1" });
