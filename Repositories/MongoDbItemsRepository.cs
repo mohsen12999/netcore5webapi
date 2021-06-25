@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using MongoDB.Driver;
+using MongoDB.Bson;
 
 using Catalog.Entities;
 
@@ -11,6 +12,7 @@ namespace Catalog.Repositories
         private const string databaseName = "catalog";
         private const string collectionName = "items";
         private readonly IMongoCollection<Item> itemCollection;
+        private readonly FilterDefinitionBuilder<Item> filterBuilder = Builders<Item>.Filter;
 
         public MongoDbItemsRepository(IMongoClient mongoClient)
         {
@@ -30,12 +32,13 @@ namespace Catalog.Repositories
 
         public Item GetItem(Guid id)
         {
-            throw new NotImplementedException();
+            var filter = filterBuilder.Eq(item => item.Id, id);
+            return itemCollection.Find(filter).SingleOrDefault();
         }
 
         public IEnumerable<Item> GetItems()
         {
-            throw new NotImplementedException();
+            return itemCollection.Find(new BsonDocument()).ToList();
         }
 
         public void UpdateItem(Item item)
