@@ -48,7 +48,7 @@ namespace catalog
 
             services.AddControllers(options =>
             {
-                options.SuppressAsyncSuffixInActionNames = false; // prevent controller name change in compile time
+                options.SuppressAsyncSuffixInActionNames = false; // prevent async controller name change in run time
             });
 
             services.AddSwaggerGen(c =>
