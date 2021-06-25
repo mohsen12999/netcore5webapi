@@ -9,4 +9,5 @@
 - run debugger from left menu or `f5` see project in `localhost:5001/swagger`
 - for prevent open new windows for every debug, remove `serverReadyAction` in `.vscode\launch.json`
 - for build easily add to default task add group to build task for build -> <kbd>ctrl</kbd><kbd>shift</kbd><kbd>b</kbd>
-- `dotnet add package MongoDB.Driver`
+- `dotnet add package MongoDB.Driver` -> add mongo db package to connect to database
+- `docker run -d --rm --name mongo -p 27017:27017 -v mongodbdata:/data/db mongo`
