@@ -11,5 +11,8 @@
 - <kbd>ctrl</kbd><kbd>.</kbd> for list of import source
 - for build easily add to default task add group to build task for build -> <kbd>ctrl</kbd><kbd>shift</kbd><kbd>b</kbd>
 - `dotnet add package MongoDB.Driver` -> add mongo db package to connect to database
-- `docker run -d --rm --name mongo -p 27017:27017 -v mongodbdata:/data/db mongo`
 - rename variable or method in all project with <kbd>right-click</kbd><kbd> rename symbpl</kbd> or <kbd>f2</kbd>
+- `docker run -d --rm --name mongo -p 27017:27017 -v mongodbdata:/data/db mongo` -> make database without user/pass
+- `docker run -d --rm --name mongo -p 27017:27017 -v mongodbdata:/data/db -e MONGO_INITDB_ROOT_USERNAME=mongoadmin -e MONGO_INITDB_ROOT_PASSWORD=Pass#word1 mongo` -> make database with user/pass
+
+2:21:00
