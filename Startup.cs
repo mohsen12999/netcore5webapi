@@ -19,6 +19,9 @@ using MongoDB.Bson.Serialization.Serializers;
 using Catalog.Repositories;
 using Catalog.Setting;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using System.Text.Json;
+using System.Net.Mime;
+using Microsoft.AspNetCore.Http;
 
 namespace catalog
 {
@@ -83,7 +86,24 @@ namespace catalog
 
                 endpoints.MapHealthChecks("/health/ready", new HealthCheckOptions
                 {
-                    Predicate = (check) => check.Tags.Contains("ready")
+                    Predicate = (check) => check.Tags.Contains("ready"),
+                    ResponseWriter = async (context, report) =>
+                    {
+                        var result = JsonSerializer.Serialize(new
+                        {
+                            status = report.Status.ToString(),
+                            checks = report.Entries.Select(entry => new
+                            {
+                                name = entry.Key,
+                                status = entry.Value.Status.ToString(),
+                                exception = entry.Value.Exception != null ? entry.Value.Exception.Message : "none",
+                                duration = entry.Value.Duration.ToString()
+                            })
+                        });
+
+                        context.Response.ContentType = MediaTypeNames.Application.Json;
+                        await context.Response.WriteAsync(result);
+                    }
                 }); // only when database in ok
 
                 endpoints.MapHealthChecks("/health/live", new HealthCheckOptions
