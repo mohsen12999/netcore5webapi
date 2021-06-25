@@ -19,5 +19,6 @@
 - `mongodb for vscode` extension show database data
 - health check -> add service and pipeline in `Startup.cs` and check the route
 - `dotnet add package AspNetCore.HealthChecks.MongoDb` -> package for mongodb health check
+- list of health check package[Enterprise HealthChecks for ASP.NET Core Diagnostics Package](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks)
 
 2:21:00
