@@ -74,7 +74,10 @@ namespace catalog
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "catalog v1"));
             }
 
-            app.UseHttpsRedirection();
+            if (env.IsDevelopment()) // prevent problem for docker
+            {
+                app.UseHttpsRedirection();
+            }
 
             app.UseRouting();
 
