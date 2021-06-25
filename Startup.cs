@@ -18,6 +18,7 @@ using MongoDB.Bson.Serialization.Serializers;
 
 using Catalog.Repositories;
 using Catalog.Setting;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
 namespace catalog
 {
@@ -57,7 +58,7 @@ namespace catalog
             });
 
             services.AddHealthChecks()
-                .AddMongoDb(mongoDbSettings.ConnectionString, name: "mongodb", timeout: TimeSpan.FromSeconds(3));
+                .AddMongoDb(mongoDbSettings.ConnectionString, name: "mongodb", timeout: TimeSpan.FromSeconds(3), tags: new[] { "ready" });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -79,7 +80,16 @@ namespace catalog
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapHealthChecks("/health");
+
+                endpoints.MapHealthChecks("/health/ready", new HealthCheckOptions
+                {
+                    Predicate = (check) => check.Tags.Contains("ready")
+                }); // only when database in ok
+
+                endpoints.MapHealthChecks("/health/live", new HealthCheckOptions
+                {
+                    Predicate = (_) => false
+                }); // when service is ok, not depend on db
             });
         }
     }
