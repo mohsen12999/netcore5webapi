@@ -28,3 +28,4 @@
 - enable kubernetes in docker descktop -> setting - kubernetes - enable kubernetes
 - test kubernetes: `kubectl config current-contex` -> output: docker desktop
 - `kubernetes` extension to easier make kubernetes config file -> in yaml file write `kubernetes deploy` to make sample code
+- make secretes for kubernetes: `kubectl create secret generic catalog-secrets --from-literal=mongodb-password=Pass#word1`

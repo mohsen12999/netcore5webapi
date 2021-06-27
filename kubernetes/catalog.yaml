@@ -20,3 +20,11 @@ spec:
               cpu: "500m"
           ports:
             - containerPort: 80
+          env:
+            - name: MongoDbSetting__Host
+            value: mongodb-service
+            - name: MongoDbSetting__Password
+            valueFrom:
+              secretKeyRef:
+                name: catalog-secrets
+                key: mongodb-password
