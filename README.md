@@ -27,4 +27,4 @@
 - `docker run -it --rm -p 8080:80 -e MongoDbSettings:Host=mongo -e MongoDbSettings:Password=Pass#word1 --network=net5tutorial catalog:v1`
 - enable kubernetes in docker descktop -> setting - kubernetes - enable kubernetes
 - test kubernetes: `kubectl config current-contex` -> output: docker desktop
-- `kubernetes` extension to easier make kubernetes config file
+- `kubernetes` extension to easier make kubernetes config file -> in yaml file write `kubernetes deploy` to make sample code
