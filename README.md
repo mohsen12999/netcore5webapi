@@ -25,3 +25,6 @@
 - make network for connect image file `docker network create net5tutorial`
 - connect image to network `docker run -d --rm --name mongo -p 27017:27017 -v mongodbdata:/data/db -e MONGO_INITDB_ROOT_USERNAME=mongoadmin -e MONGO_INITDB_ROOT_PASSWORD=Pass#word1 --network=net5tutorial mongo`
 - `docker run -it --rm -p 8080:80 -e MongoDbSettings:Host=mongo -e MongoDbSettings:Password=Pass#word1 --network=net5tutorial catalog:v1`
+- enable kubernetes in docker descktop -> setting - kubernetes - enable kubernetes
+- test kubernetes: `kubectl config current-contex` -> output: docker desktop
+- `kubernetes` extension to easier make kubernetes config file
