@@ -20,5 +20,8 @@
 - health check -> add service and pipeline in `Startup.cs` and check the route
 - `dotnet add package AspNetCore.HealthChecks.MongoDb` -> package for mongodb health check
 - list of health check package[Enterprise HealthChecks for ASP.NET Core Diagnostics Package](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks)
-
-2:21:00
+- `docker` extension for better write dockerfile -> in command pallete <kbd>ctrl</kbd><kbd>shift</kbd><kbd>p</kbd> `Docker: add docker files to workspace`
+- make docker image from dockerfile `docker build -t catalog:v1 .`
+- make network for connect image file `docker network create net5tutorial`
+- connect image to network `docker run -d --rm --name mongo -p 27017:27017 -v mongodbdata:/data/db -e MONGO_INITDB_ROOT_USERNAME=mongoadmin -e MONGO_INITDB_ROOT_PASSWORD=Pass#word1 --network=net5tutorial mongo`
+- `docker run -it --rm -p 8080:80 -e MongoDbSettings:Host=mongo -e MongoDbSettings:Password=Pass#word1 --network=net5tutorial catalog:v1`
