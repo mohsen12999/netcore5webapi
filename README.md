@@ -34,3 +34,6 @@
 - show status of deployment: `kubectl get deployments`
 - for show pods status: `kubectl get pods`
 - for show pods logs: `kubectl logs <podId>`
+- `StateFulSet` for uniq and order pods like database
+- for apply mongodb kubernetes config file: `kubectl apply -f ./kubernetes/mongodb.yaml`
+- `kubectl get statefulsets`
