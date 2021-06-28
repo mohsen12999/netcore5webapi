@@ -29,3 +29,8 @@
 - test kubernetes: `kubectl config current-contex` -> output: docker desktop
 - `kubernetes` extension to easier make kubernetes config file -> in yaml file write `kubernetes deploy` to make sample code
 - make secretes for kubernetes: `kubectl create secret generic catalog-secrets --from-literal=mongodb-password=Pass#word1`
+- `kubernetes` extension: write `kubernetes service` for sample service config
+- for apply kubernetes config file: `kubectl apply -f ./kubernetes/catalog.yaml`
+- show status of deployment: `kubectl get deployments`
+- for show pods status: `kubectl get pods`
+- for show pods logs: `kubectl logs <podId>`
