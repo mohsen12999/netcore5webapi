@@ -1,12 +1,13 @@
 using System;
 using System.Linq;
-using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 using Catalog.Repositories;
 using Catalog.Entities;
 using Catalog.Dtos;
-using System.Threading.Tasks;
 
 namespace Catalog.Controllers
 {
@@ -15,10 +16,12 @@ namespace Catalog.Controllers
     public class ItemsController : ControllerBase
     {
         private readonly IItemsRepositories repository;
+        private readonly ILogger<ItemsController> logger;
 
-        public ItemsController(IItemsRepositories repository)
+        public ItemsController(IItemsRepositories repository, ILogger<ItemsController> logger)
         {
             this.repository = repository;
+            this.logger = logger;
         }
 
         // GET /items
@@ -27,6 +30,7 @@ namespace Catalog.Controllers
         {
             var items = (await repository.GetItemsAsync())
                             .Select(item => item.AsDto());
+            logger.LogInformation($"{DateTime.UtcNow.ToString("hh:mm:ss")}: Retrived {items.Count()} items");
             return items;
         }
 
