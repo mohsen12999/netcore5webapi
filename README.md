@@ -37,3 +37,8 @@
 - `StateFulSet` for uniq and order pods like database
 - for apply mongodb kubernetes config file: `kubectl apply -f ./kubernetes/mongodb.yaml`
 - `kubectl get statefulsets`
+- watch pods online status: `kubectl get pods -w`
+- delete pod: `kubectl delete pod <podId>`
+- for scale pods: `kubectl scale deployments/catalog-deployment --replicas=3` -> make 3 pods
+- add new version of image: `docker build -t mohsen1299/catalog:v2 .`
+- push new version of image: `docker push mohsen1299/catalog:v2 .`
