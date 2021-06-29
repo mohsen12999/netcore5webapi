@@ -5,11 +5,11 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-using Catalog.Repositories;
-using Catalog.Entities;
-using Catalog.Dtos;
+using Catalog.Api.Repositories;
+using Catalog.Api.Entities;
+using Catalog.Api.Dtos;
 
-namespace Catalog.Controllers
+namespace Catalog.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Catalog.Dtos
+namespace Catalog.Api.Dtos
 {
     // Data Transfer Object
     public record UpdatedItemDto

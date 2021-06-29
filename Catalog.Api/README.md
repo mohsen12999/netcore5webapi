@@ -14,7 +14,7 @@
 - rename variable or method in all project with <kbd>right-click</kbd><kbd> rename symbpl</kbd> or <kbd>f2</kbd>
 - `docker run -d --rm --name mongo -p 27017:27017 -v mongodbdata:/data/db mongo` -> make database without user/pass
 - `docker run -d --rm --name mongo -p 27017:27017 -v mongodbdata:/data/db -e MONGO_INITDB_ROOT_USERNAME=mongoadmin -e MONGO_INITDB_ROOT_PASSWORD=Pass#word1 mongo` -> make database with user/pass
-- `dotnet user-secrets init` -> add user secret id to project in `catalog.csproj`
+- `dotnet user-secrets init` -> add user secret id to project in `Catalog.Api.csproj`
 - `dotnet user-secrets set MongoDbSettings:Password Pass#word1` -> add secret to project
 - `mongodb for vscode` extension show database data
 - health check -> add service and pipeline in `Startup.cs` and check the route

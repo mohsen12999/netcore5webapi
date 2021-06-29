@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using MongoDB.Driver;
 using MongoDB.Bson;
 
-using Catalog.Entities;
+using Catalog.Api.Entities;
 using System.Threading.Tasks;
 
-namespace Catalog.Repositories
+namespace Catalog.Api.Repositories
 {
     public class MongoDbItemsRepository : IItemsRepositories
     {

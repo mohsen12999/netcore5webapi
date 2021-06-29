@@ -16,14 +16,14 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 
-using Catalog.Repositories;
-using Catalog.Setting;
+using Catalog.Api.Repositories;
+using Catalog.Api.Setting;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using System.Text.Json;
 using System.Net.Mime;
 using Microsoft.AspNetCore.Http;
 
-namespace catalog
+namespace Catalog.Api
 {
     public class Startup
     {
