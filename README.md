@@ -45,3 +45,4 @@
 - for show pods logs: `kubectl logs <podId> -f`
 - add unit test project: `dotnet new xunit -n Catalog.UnitTests`
 - for build file together make `build.proj` and change task to run it
+- for adding api project reference in unit test -> `dotnet add reference ..\Catalog.Api\Catalog.Api.csproj`
