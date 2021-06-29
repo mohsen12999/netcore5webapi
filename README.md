@@ -42,3 +42,4 @@
 - for scale pods: `kubectl scale deployments/catalog-deployment --replicas=3` -> make 3 pods
 - add new version of image: `docker build -t mohsen1299/catalog:v2 .`
 - push new version of image: `docker push mohsen1299/catalog:v2 .`
+- for show pods logs: `kubectl logs <podId> -f`
