@@ -44,3 +44,4 @@
 - push new version of image: `docker push mohsen1299/catalog:v2 .`
 - for show pods logs: `kubectl logs <podId> -f`
 - add unit test project: `dotnet new xunit -n Catalog.UnitTests`
+- for build file together make `build.proj` and change task to run it
