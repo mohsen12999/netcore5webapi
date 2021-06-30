@@ -102,6 +102,48 @@ namespace Catalog.UnitTests
             createdItem.CreatedDate.Should().BeCloseTo(DateTimeOffset.UtcNow, 1000);
         }
 
+        [Fact]
+        public async Task UpdateItemAsync_WithUnexistingItem_ReturnsNotFound()
+        {
+            // Arrange
+            repositoryStob.Setup(repo => repo.GetItemAsync(It.IsAny<Guid>()))
+                .ReturnsAsync((Item)null);
+
+            var controller = new ItemsController(repositoryStob.Object, loggerStub.Object);
+
+            // Act
+            var result = await controller.UpdateItemAsync(new Guid(), new UpdatedItemDto());
+
+            // Assert
+            result.Should().BeOfType<NotFoundResult>();
+        }
+
+        [Fact]
+        public async Task UpdateItemAsync_WithExistingItems_ReturnsNoContent()
+        {
+            // Arrange
+            var existingItem = CreateRandomItem();
+
+            repositoryStob.Setup(repo => repo.GetItemAsync(It.IsAny<Guid>()))
+                .ReturnsAsync(existingItem);
+
+            var itemId = existingItem.Id;
+            var itemToUpdate = new UpdatedItemDto()
+            {
+                Name = Guid.NewGuid().ToString(),
+                Price = existingItem.Price + 3,
+            };
+
+            var controller = new ItemsController(repositoryStob.Object, loggerStub.Object);
+
+            // Act
+
+            var result = await controller.UpdateItemAsync(itemId, itemToUpdate);
+
+            // Assert
+            result.Should().BeOfType<NoContentResult>();
+        }
+
         private Item CreateRandomItem()
         {
             return new()
