@@ -56,7 +56,7 @@ namespace Catalog.UnitTests
             // Assert.Equal(expectedItem.Id, dto.Id);
             // Assert.Equal(expectedItem.Name, dto.Name);
             // Assert.Equal(expectedItem.Price, dto.Price);
-            result.Value.Should().BeEquivalentTo(expectedItem, options => options.ComparingByMembers<Item>());
+            result.Value.Should().BeEquivalentTo(expectedItem);
         }
 
         [Fact]
@@ -74,18 +74,17 @@ namespace Catalog.UnitTests
             var actualItems = await controller.GetItemsAsync();
 
             // Assert
-            actualItems.Should().BeEquivalentTo(expectedItems, options => options.ComparingByMembers<Item>());
+            actualItems.Should().BeEquivalentTo(expectedItems);
         }
 
         [Fact]
         public async Task CreatedItemAsync_WithItemToCreate_ReturnsCreatedItem()
         {
             // Arrange
-            var itemToCreate = new CreatedItemDto()
-            {
-                Name = Guid.NewGuid().ToString(),
-                Price = rand.Next(1000),
-            };
+            var itemToCreate = new CreateItemDto(
+                Guid.NewGuid().ToString(),
+                 Guid.NewGuid().ToString(),
+                 rand.Next(1000));
 
             var controller = new ItemsController(repositoryStob.Object, loggerStub.Object);
 
@@ -111,8 +110,10 @@ namespace Catalog.UnitTests
 
             var controller = new ItemsController(repositoryStob.Object, loggerStub.Object);
 
+            var itemToUpdate = new UpdateItemDto(Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), rand.Next(1000));
+
             // Act
-            var result = await controller.UpdateItemAsync(new Guid(), new UpdatedItemDto());
+            var result = await controller.UpdateItemAsync(new Guid(), itemToUpdate);
 
             // Assert
             result.Should().BeOfType<NotFoundResult>();
@@ -128,11 +129,10 @@ namespace Catalog.UnitTests
                 .ReturnsAsync(existingItem);
 
             var itemId = existingItem.Id;
-            var itemToUpdate = new UpdatedItemDto()
-            {
-                Name = Guid.NewGuid().ToString(),
-                Price = existingItem.Price + 3,
-            };
+            var itemToUpdate = new UpdateItemDto(
+                Guid.NewGuid().ToString(),
+                Guid.NewGuid().ToString(),
+                existingItem.Price + 3);
 
             var controller = new ItemsController(repositoryStob.Object, loggerStub.Object);
 
