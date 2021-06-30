@@ -137,8 +137,41 @@ namespace Catalog.UnitTests
             var controller = new ItemsController(repositoryStob.Object, loggerStub.Object);
 
             // Act
-
             var result = await controller.UpdateItemAsync(itemId, itemToUpdate);
+
+            // Assert
+            result.Should().BeOfType<NoContentResult>();
+        }
+
+        [Fact]
+        public async Task DeleteItemAsync_WithUnexistingItem_ReturnsNotFound()
+        {
+            // Arrange
+            repositoryStob.Setup(repo => repo.GetItemAsync(It.IsAny<Guid>()))
+                .ReturnsAsync((Item)null);
+
+            var controller = new ItemsController(repositoryStob.Object, loggerStub.Object);
+
+            // Act
+            var result = await controller.DeleteItemAsync(new Guid());
+
+            // Assert
+            result.Should().BeOfType<NotFoundResult>();
+        }
+
+        [Fact]
+        public async Task DeleteItemAsync_WithExistingItems_ReturnsNoContent()
+        {
+            // Arrange
+            var existingItem = CreateRandomItem();
+
+            repositoryStob.Setup(repo => repo.GetItemAsync(It.IsAny<Guid>()))
+                .ReturnsAsync(existingItem);
+
+            var controller = new ItemsController(repositoryStob.Object, loggerStub.Object);
+
+            // Act
+            var result = await controller.DeleteItemAsync(existingItem.Id);
 
             // Assert
             result.Should().BeOfType<NoContentResult>();
