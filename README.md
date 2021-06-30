@@ -52,3 +52,4 @@
 - test method naming: `UnitOfWork_StateUnderTest_ExpectedBehavior` -> `GetItemAsync_WithUnexistingItem_ReturnsNotFound`
 - run test: `dotnet test`
 - for easier testing: `.net core test explorer` extension for vscode.
+- for check object we can user FluentAssertions package: `dotnet add package FluentAssertions`

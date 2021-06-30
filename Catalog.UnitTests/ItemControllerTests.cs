@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
+using FluentAssertions;
 
 namespace Catalog.UnitTests
 {
@@ -31,7 +32,8 @@ namespace Catalog.UnitTests
             var result = await controller.GetItemAsync(new Guid());
 
             // Assert
-            Assert.IsType<NotFoundResult>(result.Result);
+            // Assert.IsType<NotFoundResult>(result.Result);
+            result.Result.Should().BeOfType<NotFoundResult>();
         }
 
         [Fact]
@@ -49,11 +51,12 @@ namespace Catalog.UnitTests
             var result = await controller.GetItemAsync(new Guid());
 
             // Assert
-            Assert.IsType<ItemDto>(result.Result);
-            var dto = (result as ActionResult<ItemDto>).Value;
-            Assert.Equal(expectedItem.Id, dto.Id);
-            Assert.Equal(expectedItem.Name, dto.Name);
-            Assert.Equal(expectedItem.Price, dto.Price);
+            // Assert.IsType<ItemDto>(result.Result);
+            // var dto = (result as ActionResult<ItemDto>).Value;
+            // Assert.Equal(expectedItem.Id, dto.Id);
+            // Assert.Equal(expectedItem.Name, dto.Name);
+            // Assert.Equal(expectedItem.Price, dto.Price);
+            result.Value.Should().BeEquivalentTo(expectedItem, options => options.ComparingByMembers<Item>());
         }
 
         private Item CreateRandomItem()
