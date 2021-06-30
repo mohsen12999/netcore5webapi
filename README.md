@@ -48,3 +48,5 @@
 - for adding api project reference in unit test -> `dotnet add reference ..\Catalog.Api\Catalog.Api.csproj`
 - `dotnet add package Microsoft.Extensions.Logging.Abstractions` for using ILogger class in unit test
 - `dotnet add package moq` -> help mock classes
+- if see error in `xunit` and `[fact]` section of test file in vscode -> <kbd>ctrl</kbd><kbd>shift</kbd><kbd>p</kbd> + `OmniSharp: restart OmniSharp`
+- test method naming: `UnitOfWork_StateUnderTest_ExpectedBehavior` -> `GetItemAsync_WithUnexistingItem_ReturnsNotFound`
