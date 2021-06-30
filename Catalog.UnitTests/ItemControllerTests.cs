@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
 using FluentAssertions;
+using System.Collections.Generic;
 
 namespace Catalog.UnitTests
 {
@@ -75,6 +76,32 @@ namespace Catalog.UnitTests
 
             // Assert
             actualItems.Should().BeEquivalentTo(expectedItems);
+        }
+
+        [Fact]
+        public async Task GetItemsAsync_WithMatchingItems_ReturnsMatchingItems()
+        {
+            // Arrange
+            var allItems = new[] {
+                new Item(){ Name="Potion" },
+                new Item(){ Name="Antidote" },
+                new Item(){ Name="Hi-Potion" },
+            };
+
+            var nameToMatch = "Postion";
+
+            repositoryStob.Setup(repo => repo.GetItemsAsync())
+                            .ReturnsAsync(allItems);
+
+            var controller = new ItemsController(repositoryStob.Object, loggerStub.Object);
+
+            // Act
+            IEnumerable<ItemDto> FoundItems = await controller.GetItemsAsync(nameToMatch);
+
+            // Assert
+            FoundItems.Should().OnlyContain(
+                Item => Item.Name == allItems[0].Name || Item.Name == allItems[2].Name
+            );
         }
 
         [Fact]
