@@ -50,3 +50,5 @@
 - `dotnet add package moq` -> help mock classes
 - if see error in `xunit` and `[fact]` section of test file in vscode -> <kbd>ctrl</kbd><kbd>shift</kbd><kbd>p</kbd> + `OmniSharp: restart OmniSharp`
 - test method naming: `UnitOfWork_StateUnderTest_ExpectedBehavior` -> `GetItemAsync_WithUnexistingItem_ReturnsNotFound`
+- run test: `dotnet test`
+- for easier testing: `.net core test explorer` extension for vscode.
